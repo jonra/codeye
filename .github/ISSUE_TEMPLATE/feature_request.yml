@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest a new widget or improvement
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got an idea? Great. Keep it focused — one widget or change per issue.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - New widget
+        - Existing widget improvement
+        - Config option
+        - Performance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      placeholder: "e.g. I can't tell when Claude has stalled mid-task without switching windows"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would the statusline output look like? Include an example if you can.
+      placeholder: |
+        Add a ⏸ indicator after 30s of no token activity.
+        Example output: ▓▓▓▓░░░░░░ 42% │ ⏸ 45s │ ⎇ main
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you thought about?

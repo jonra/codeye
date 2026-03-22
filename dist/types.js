@@ -1,0 +1,43 @@
+// Claude Code statusline stdin JSON schema
+// Sent every ~300ms while Claude Code is running
+// ANSI color codes
+export const ANSI = {
+    reset: "\x1b[0m",
+    bold: "\x1b[1m",
+    dim: "\x1b[2m",
+    // Foreground
+    black: "\x1b[30m",
+    red: "\x1b[31m",
+    green: "\x1b[32m",
+    yellow: "\x1b[33m",
+    blue: "\x1b[34m",
+    magenta: "\x1b[35m",
+    cyan: "\x1b[36m",
+    white: "\x1b[37m",
+    brightRed: "\x1b[91m",
+    brightGreen: "\x1b[92m",
+    brightYellow: "\x1b[93m",
+    brightBlue: "\x1b[94m",
+    brightCyan: "\x1b[96m",
+    brightWhite: "\x1b[97m",
+};
+export const DEFAULT_CONFIG = {
+    contextBarWidth: 10,
+    contextWarnAt: 70,
+    contextCritAt: 90,
+    gitEnabled: true,
+    gitShowDirty: true,
+    gitShowAheadBehind: true,
+    burnRateEnabled: true,
+    burnRateWindow: 60,
+    costEnabled: true,
+    costWarnAt: 0.50,
+    costCritAt: 2.00,
+    stallEnabled: true,
+    stallWarnSec: 30,
+    stallCritSec: 90,
+    separator: " │ ",
+    showModel: true,
+    showProject: true,
+    showSessionTime: true,
+};

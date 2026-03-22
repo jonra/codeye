@@ -1,0 +1,9 @@
+{
+  "name": "codeye",
+  "description": "Claude Code statusline HUD — context burn rate, cost tracking, git status, stall detection",
+  "version": "0.2.0",
+  "author": {
+    "name": "Jon Rasmussen",
+    "url": "https://github.com/jonrasmussen"
+  }
+}

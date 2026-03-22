@@ -1,0 +1,62 @@
+name: Bug report
+description: Something isn't working
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please fill in as much as you can.
+
+  - type: input
+    id: claude-code-version
+    attributes:
+      label: Claude Code version
+      placeholder: "e.g. v2.1.81 — run: claude --version"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js version
+      placeholder: "e.g. v22.2.0 — run: node --version"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: "e.g. macOS 15.3, Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect to see, and what did you see instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run npm run test:mock
+        2. See error: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: statusline-output
+    attributes:
+      label: Statusline output
+      description: Run `/codeye:status` in Claude Code and paste the output here
+      render: shell
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?

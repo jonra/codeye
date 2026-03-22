@@ -1,0 +1,18 @@
+{
+  "name": "codeye",
+  "description": "Claude Code statusline HUD — context burn rate, cost tracking, git status, stall detection",
+  "version": "0.2.0",
+  "author": {
+    "name": "Jon Rasmussen",
+    "url": "https://github.com/jonrasmussen"
+  },
+  "repository": "https://github.com/jonrasmussen/codeye",
+  "license": "MIT",
+  "keywords": ["statusline", "hud", "context", "git", "cost", "claude-code"],
+  "minClaudeCodeVersion": "1.0.80",
+  "source": {
+    "type": "github",
+    "repo": "jonrasmussen/codeye",
+    "branch": "main"
+  }
+}
