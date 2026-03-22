@@ -1,4 +1,3 @@
-#!/usr/bin/env bun
 /**
  * codeye — Claude Code statusline plugin
  *
@@ -14,6 +13,8 @@ import { renderGit } from "./widgets/git.js";
 import { renderModel, renderProject, renderSessionTime } from "./widgets/session.js";
 import { renderCost } from "./widgets/cost.js";
 import { renderStall } from "./widgets/stall.js";
+import { renderRateLimits } from "./widgets/rate-limits.js";
+import { renderSecurity } from "./widgets/security.js";
 
 // ── Read stdin ───────────────────────────────────────────────────────────────
 
@@ -41,13 +42,14 @@ function joinWidgets(widgets: string[], sep: string): string {
   return widgets.filter((w) => w.length > 0).join(sep);
 }
 
-function render(input: StatusInput): string {
+async function render(input: StatusInput): Promise<string> {
   const config = DEFAULT_CONFIG;
   const sep = config.separator;
 
   // ── Line 1: model │ project │ session time │ cost ──────────────────────
   const line1Parts: string[] = [];
 
+  line1Parts.push(`${ANSI.cyan}${ANSI.bold}codeye${ANSI.reset}`);
   if (config.showModel)       line1Parts.push(renderModel(input, config));
   if (config.showProject)     line1Parts.push(renderProject(input, config));
   if (config.showSessionTime) line1Parts.push(renderSessionTime(input, config));
@@ -81,10 +83,23 @@ function render(input: StatusInput): string {
     if (git) line2Parts.push(git);
   }
 
+  // ── Line 3: rate limits ────────────────────────────────────────────────
+  let line3 = "";
+  if (config.rateLimitsEnabled) {
+    line3 = await renderRateLimits(input);
+  }
+
+  // ── Line 4: security alerts ────────────────────────────────────────────
+  let line4 = "";
+  if (config.securityEnabled) {
+    const sec = renderSecurity(input);
+    if (sec) line4 = sec;
+  }
+
   const line1 = joinWidgets(line1Parts, sep);
   const line2 = joinWidgets(line2Parts, sep);
 
-  return [line1, line2].filter(Boolean).join("\n");
+  return [line1, line2, line3, line4].filter(Boolean).join("\n");
 }
 
 // ── Compact nudge ────────────────────────────────────────────────────────────
@@ -120,7 +135,7 @@ async function main() {
     process.exit(0);
   }
 
-  let output = render(input);
+  let output = await render(input);
   output = maybeAddNudge(output, input);
 
   process.stdout.write(output + "\n");

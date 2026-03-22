@@ -33,6 +33,8 @@ export const DEFAULT_CONFIG = {
     costEnabled: true,
     costWarnAt: 0.50,
     costCritAt: 2.00,
+    rateLimitsEnabled: true,
+    securityEnabled: true,
     stallEnabled: true,
     stallWarnSec: 30,
     stallCritSec: 90,

@@ -6,6 +6,18 @@ Format: [Semantic Versioning](https://semver.org). Types: `Added`, `Changed`, `F
 
 ---
 
+## [0.3.0] — 2026-03-22
+
+### Added
+- **Rate limit tracker** — third statusline showing 5-hour session and 7-day weekly utilization with reset countdowns
+- Supports native `rate_limits` field on stdin (Path B) and OAuth API fallback (Path A)
+- OAuth token retrieval from macOS Keychain and `~/.claude/.credentials.json` fallback
+- 60-second response caching to `~/.claude/plugins/codeye/state/rate-limits.json`
+- Color thresholds: green < 60%, yellow 60–80%, red ≥ 80%
+- `test:ratelimit` mock payload for testing rate limit display
+
+---
+
 ## [0.2.0] — 2026-03-22
 
 ### Added

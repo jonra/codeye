@@ -84,6 +84,12 @@ export interface HudConfig {
   costWarnAt: number;             // default 0.50 — yellow above this
   costCritAt: number;             // default 2.00 — red above this
 
+  // Rate limits
+  rateLimitsEnabled: boolean;
+
+  // Security alerts
+  securityEnabled: boolean;
+
   // Stall detection
   stallEnabled: boolean;
   stallWarnSec: number;           // default 30s — show ⏸ indicator
@@ -108,6 +114,8 @@ export const DEFAULT_CONFIG: HudConfig = {
   costEnabled: true,
   costWarnAt: 0.50,
   costCritAt: 2.00,
+  rateLimitsEnabled: true,
+  securityEnabled: true,
   stallEnabled: true,
   stallWarnSec: 30,
   stallCritSec: 90,

@@ -11,10 +11,21 @@ const path = require('path');
 const os = require('os');
 
 const settingsPath = path.join(os.homedir(), '.claude', 'settings.json');
-const pluginDir = path.join(os.homedir(), '.claude', 'plugins', 'codeye');
+const cacheBase = path.join(os.homedir(), '.claude', 'plugins', 'cache', 'codeye', 'codeye');
 
-// Find the latest dist/index.js
-const entry = path.join(pluginDir, 'dist', 'index.js');
+// Find the installed version directory
+let entry = null;
+try {
+  const versions = fs.readdirSync(cacheBase).filter(v => v !== '.' && v !== '..');
+  if (versions.length > 0) {
+    entry = path.join(cacheBase, versions[versions.length - 1], 'dist', 'src', 'index.js');
+  }
+} catch {}
+
+if (!entry || !fs.existsSync(entry)) {
+  console.log('❌ codeye not found. Install it first: /plugin install codeye');
+  process.exit(1);
+}
 
 let settings = {};
 try {
