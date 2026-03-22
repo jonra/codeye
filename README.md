@@ -18,7 +18,7 @@ codeye │ Opus 4.6 │ 📁 my-project │ ⏱ 4m32s │ $0.24
 
 ## Install
 
-Run these two commands inside Claude Code:
+Run these commands inside Claude Code:
 
 ```
 /plugin marketplace add jonra/codeye
@@ -26,8 +26,13 @@ Run these two commands inside Claude Code:
 ```
 /plugin install codeye
 ```
+```
+/codeye:setup
+```
 
-The statusline appears immediately. No restart needed.
+The `/codeye:setup` command configures the `statusLine` setting — required for the HUD to appear. The statusline shows up immediately after setup. No restart needed.
+
+> **Note:** The `statusLine` setting is global-only (`~/.claude/settings.json`) — Claude Code does not support it at the project level. The HUD will be active across all projects.
 
 **Requirements:** Claude Code v1.0.80+ · Node.js 18+
 
