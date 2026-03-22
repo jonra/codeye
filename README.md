@@ -108,7 +108,7 @@ You can customize codeye by editing `~/.claude/plugins/codeye/config.json`. Ever
 ## Development
 
 ```bash
-git clone https://github.com/jonrasmussen/codeye
+git clone https://github.com/jonra/codeye
 cd codeye
 npm ci && npm run build
 

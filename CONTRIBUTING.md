@@ -5,7 +5,7 @@ Thanks for wanting to improve codeye! Here's everything you need.
 ## Setup
 
 ```bash
-git clone https://github.com/jonrasmussen/codeye
+git clone https://github.com/jonra/codeye
 cd codeye
 npm ci
 npm run build
