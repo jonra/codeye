@@ -42,7 +42,7 @@ function joinWidgets(widgets: string[], sep: string): string {
   return widgets.filter((w) => w.length > 0).join(sep);
 }
 
-async function render(input: StatusInput): Promise<string> {
+function render(input: StatusInput): string {
   const config = DEFAULT_CONFIG;
   const sep = config.separator;
 
@@ -86,7 +86,7 @@ async function render(input: StatusInput): Promise<string> {
   // ── Line 3: rate limits ────────────────────────────────────────────────
   let line3 = "";
   if (config.rateLimitsEnabled) {
-    line3 = await renderRateLimits(input);
+    line3 = renderRateLimits(input);
   }
 
   // ── Line 4: security alerts ────────────────────────────────────────────
@@ -135,7 +135,7 @@ async function main() {
     process.exit(0);
   }
 
-  let output = await render(input);
+  let output = render(input);
   output = maybeAddNudge(output, input);
 
   process.stdout.write(output + "\n");
