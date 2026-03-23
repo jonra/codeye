@@ -3,7 +3,16 @@
 # Runs as a SessionStart hook — must be fast and silent on failure.
 
 SETTINGS_FILE="$HOME/.claude/settings.json"
-ENTRY="${CLAUDE_PLUGIN_ROOT}/dist/src/index.js"
+
+# Resolve plugin root: prefer env var, fall back to script location
+if [ -n "$CLAUDE_PLUGIN_ROOT" ]; then
+  PLUGIN_ROOT="$CLAUDE_PLUGIN_ROOT"
+else
+  SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+  PLUGIN_ROOT="$(dirname "$SCRIPT_DIR")"
+fi
+
+ENTRY="${PLUGIN_ROOT}/dist/src/index.js"
 
 # Bail if entry point doesn't exist
 [ -f "$ENTRY" ] || exit 0
